@@ -1,0 +1,10 @@
+﻿@model WeatherModel
+@{
+    ViewData["Title"] = "Weather";
+}
+<h1>@Model.WeatherSynoptic.StationName</h1>
+<p>Temp: @Model.WeatherSynoptic.Temp</p>
+<p>Pressure: @Model.WeatherSynoptic.Pressure</p>
+<p>Wind: @Model.WeatherSynoptic.WindSpeed</p>
+<p>River: @Model.WeatherHydro.River</p>
+<p>River Temp: @Model.WeatherHydro.Temp</p>

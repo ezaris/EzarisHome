@@ -1,5 +1,11 @@
-﻿namespace EzarisHomeApi.Models {
-    public class MusicPlayerStateModel {        
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace EzarisHomeWeb.Models
+{
+    public class MusicPlayerStateModel {
         public StatusEnum Status { get; set; }
         public string Samplerate { get; set; }
         public string Bitdepth { get; set; }
@@ -12,5 +18,4 @@
             Stop
         }
     }
-    
 }

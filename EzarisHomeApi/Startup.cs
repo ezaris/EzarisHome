@@ -1,4 +1,5 @@
 using EzarisHomeApi.Interfaces;
+using EzarisHomeApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,8 @@ namespace EzarisHomeApi {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddTransient<IMusicPlayer, VolumioSevice>();
+            services.AddTransient<IWeather, ImgwService>();
+            services.AddTransient<ISpace, SpaceService>();
             services.AddControllers();
             services.AddCors(c => {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());

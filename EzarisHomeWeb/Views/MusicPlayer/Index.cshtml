@@ -1,0 +1,23 @@
+﻿@model MusicPlayerModel
+@{
+    ViewData["Title"] = "MusicPlayer";
+}
+<h1>@Model.State.Status</h1>
+<p>Track: @Model.State.Title</p>
+<p>Sample rate: @Model.State.Samplerate</p>
+
+<p>
+    
+</p>
+<div>
+    <h2>Favourites radio list</h2>
+    <ul>
+        @foreach (var item in @Model.StationList)
+        {
+            <li>
+                <span>@item.Title</span>
+                <input type="submit" value="Play" asp-action="Play" />
+            </li>
+        }
+    </ul>
+</div>
