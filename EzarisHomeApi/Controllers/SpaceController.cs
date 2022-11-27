@@ -16,11 +16,7 @@ namespace EzarisHomeApi.Controllers {
             _space = space ?? throw new ArgumentNullException(nameof(space));
         }
         [HttpGet]
-        public string GetAstronomyPictureOfTheDay() {            
-            var astronomyPictureOfTheDayJson = _space.GetAstronomyPictureOfTheDay();
-            var astronomyPictureOfTheDay = JsonHelper.ConvertJsonToModel<AstronomyPictureOfTheDayModel>(astronomyPictureOfTheDayJson);
-            //return $"Date: {astronomyPictureOfTheDay.Date}, Title: {astronomyPictureOfTheDay.Title}, Description: {astronomyPictureOfTheDay.Explanation}";
-            return astronomyPictureOfTheDayJson;
-        }
+        public string GetAstronomyPictureOfTheDay() => _space.GetAstronomyPictureOfTheDay();            
+
     }
 }

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace EzarisHomeApi.Services {
     public class SpaceService : ISpace {
         private const string NASA_APOD_API_BASEURL = "https://api.nasa.gov/planetary/apod";
-        //private const string NASA_API_KEY = "DiuqqqVt39SSsLVriX3uHLqVLw3tEVcjP3RxfBQ7";
         private string nasaApiKey;
         private readonly IConfiguration _config;
         public SpaceService(IConfiguration config)

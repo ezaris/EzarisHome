@@ -28,9 +28,7 @@ namespace EzarisHomeApi.Controllers {
         {            
             string defaultCity = _config["Data:DefaultCity"].ToString();
             city = city ?? defaultCity;
-            var synopticDataByStationJson = _weather.GetSynopticDataByStation(city);
-            //var synopticDataByStation = JsonHelper.ConvertJsonToModel<WeatherSynopticModel>(synopticDataByStationJson);
-            //return $"Station: {synopticDataByStation.StationName}, Temperature: {synopticDataByStation.Temp}, Pressure: {synopticDataByStation.Pressure}, Date: {synopticDataByStation.MeasureDate} / {synopticDataByStation.MeasureHour}";
+            var synopticDataByStationJson = _weather.GetSynopticDataByStation(city);            
             return synopticDataByStationJson;
         }
 
@@ -40,9 +38,7 @@ namespace EzarisHomeApi.Controllers {
             var hydroDataJson = _weather.GetHydroData();
             var hydroDataList = JsonHelper.ConvertJsonToModelList<WeatherHydroModel>(hydroDataJson);
             var hydroData = hydroDataList.Where(h => h.StationName == "Szczecin" && h.River == "Odra").First();
-            return JsonHelper.CreateJson(hydroData);
-            
-            //return $"River: {hydroData.River}, Date: {hydroData.TempDate}, Station: {hydroData.StationName}, Temperature: {hydroData.Temp}, State: {hydroData.WaterStatus}";
+            return JsonHelper.CreateJson(hydroData);            
         }
     }
 }

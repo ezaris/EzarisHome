@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EzarisHomeWeb.Models
-{
-    public class WeatherSynopticModel
-    {
+namespace EzarisHomeWeb.Models {
+    public class WeatherSynopticModel {
         [JsonProperty("id_stacji")]
         public string StationId { get; set; }
         [JsonProperty("stacja")]

@@ -2,22 +2,39 @@
 @{
     ViewData["Title"] = "MusicPlayer";
 }
-<h1>@Model.State.Status</h1>
-<p>Track: @Model.State.Title</p>
-<p>Sample rate: @Model.State.Samplerate</p>
+<p>Status: <span class="badge badge-success">@Model.State.Status</span></p>
+<p>Track: <span class="badge badge-secondary">@Model.State.Title</span></p>
+<p>Sample rate: <span class="badge badge-info">@Model.State.Samplerate</span></p>
 
 <p>
-    
+
 </p>
-<div>
+<div id="musicPlayerContainer">
     <h2>Favourites radio list</h2>
-    <ul>
-        @foreach (var item in @Model.StationList)
+    <ul class="list-inline">
+        @for (var i = 0; i < Model.StationList.Count; i++)
         {
-            <li>
-                <span>@item.Title</span>
-                <input type="submit" value="Play" asp-action="Play" />
-            </li>
+        <li>
+            <button name="@i" class="radiostation btn btn-secondary btn-lg btn-block" asp-action="Play">
+                @Model.StationList[i].Title
+                <span style="display: none" class="spinner-border spinner-border-sm"></span>
+            </button>            
+        </li>
         }
     </ul>
 </div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('.radiostation').click(function () {
+            var cuttendItem = $(this);
+            var url = "/MusicPlayer/Play";
+            $(this).children('span').show();
+            jQuery.post(url, { Id: $(this).attr("name") }, function (response) {
+                cuttendItem.children('span').hide();
+                jQuery('#musicPlayerContainer button').removeClass('btn-primary');
+                cuttendItem.addClass('btn-primary');
+            });
+        });
+    });
+</script>

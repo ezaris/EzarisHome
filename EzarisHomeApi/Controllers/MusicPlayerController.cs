@@ -15,13 +15,7 @@ namespace EzarisHomeApi.Controllers {
         }
 
         [HttpGet]
-        public string GetState() {
-            var musicPlayerStateJson = _musicPlayer.GetState();
-            //var musicPlayerState = JsonHelper.ConvertJsonToModel<MusicPlayerStateModel>(musicPlayerStateJson);
-            //return $"Status: {musicPlayerState.Status}, Bitdepth: {musicPlayerState.Bitdepth}, Samplerate: {musicPlayerState.Samplerate}, Volume: {musicPlayerState.Volume}, Title {musicPlayerState.Title}";
-            return musicPlayerStateJson;
-        }
-
+        public string GetState() => _musicPlayer.GetState();
         [HttpGet("play")]
         public string Play() => _musicPlayer.Play();
         [HttpGet("pause")]

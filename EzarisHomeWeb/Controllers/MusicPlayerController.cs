@@ -36,34 +36,20 @@ namespace EzarisHomeWeb.Controllers
         {
             var radioList = new List<MusicPlayerStationModel>();
             var apiResponse = RequestHelper.GetRequest("https://localhost:5001/musicplayer/GetFavouritesRadio");
-            //var musicPlayerState = JsonConvert.DeserializeObject<MusicPlayerStateModel>(apiResponse.Result);
-
             JObject radioListObject = JObject.Parse(apiResponse.Result);
             var items = radioListObject["navigation"]["lists"].Children().ToList().FirstOrDefault()["items"].Children().ToList();
             items.ForEach(i => radioList.Add(JsonHelper.ConvertJsonToModel<MusicPlayerStationModel>(i.ToString())));
-
-
             return radioList;
         }
         [HttpPost]
-        public void Play()
-        {
-            var url = "https://localhost:5001/musicplayer/AddToQueue";
-            //var apiResponse = RequestHelper.GetRequest("https://localhost:5001/musicplayer/AddToQueue");
-
-            var antyradioPaylod = new MusicPlayerStationModel()
-            {
-                Service = "webradio",
-                Type = "webradio",
-                Title = "Anty Radio",
-                Icon = "fa fa-microphone",
-                URI = "http://opml.radiotime.com/Tune.ashx?id=s9608"
-            };
-            var json = JsonHelper.CreateJson(antyradioPaylod);
-            RequestHelper.PostRequest(url, json);
-            //var musicPlayerState = JsonConvert.DeserializeObject<MusicPlayerStateModel>(apiResponse.Result);
-            //TempData["Message"] = "You clicked Save!";
-            //return RedirectToAction("Index");
+        public string Play(string id) {
+            var stationList = GetStationList();
+            var station = stationList[int.Parse(id)];
+            var url = "https://localhost:5001/musicplayer/AddToQueue";            
+            var json = JsonHelper.CreateJson(station);
+            var response = RequestHelper.PostRequest(url, json);
+            var body =  response.Result.ReadAsStringAsync();
+            return body.Result;
         }
     }
 }
