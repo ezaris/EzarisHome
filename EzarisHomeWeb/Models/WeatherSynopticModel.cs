@@ -23,8 +23,8 @@ namespace EzarisHomeWeb.Models {
         [JsonProperty("wilgotnosc_wzgledna")]
         public string RelativeHumidity { get; set; }
         [JsonProperty("suma_opadu")]
-        public string TotalPrecipitation { get; set; }
+        public Decimal TotalPrecipitation { get; set; }
         [JsonProperty("cisnienie")]
-        public string Pressure { get; set; }
+        public Decimal Pressure { get; set; }
     }
 }

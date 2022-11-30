@@ -1,10 +1,46 @@
 ﻿@model WeatherModel
 @{
     ViewData["Title"] = "Weather";
+    var pressureClassName = "bg-success";
+    @if (Model.WeatherSynoptic.Pressure > 1000)
+    {
+        pressureClassName = "bg-danger";
+    }
 }
-<h1>@Model.WeatherSynoptic.StationName</h1>
-<p>Temp: @Model.WeatherSynoptic.Temp</p>
-<p>Pressure: @Model.WeatherSynoptic.Pressure</p>
-<p>Wind: @Model.WeatherSynoptic.WindSpeed</p>
-<p>River: @Model.WeatherHydro.River</p>
-<p>River Temp: @Model.WeatherHydro.Temp</p>
+<div class="weather-wrapper">
+    <div class="weather-card @Model.WeatherSynoptic.StationName">
+        @if (Model.WeatherSynoptic.TotalPrecipitation > 0)
+        {
+            <div class="weather-icon cloud"></div>
+        }
+        else
+        {
+            <div class="weather-icon sun"></div>
+        }
+
+        <h1>@Model.WeatherSynoptic.Temp º</h1>
+        <p>@Model.WeatherSynoptic.StationName</p>
+    </div>
+    <div class="weather-card @Model.WeatherHydro.River">
+        @if (Model.WeatherSynoptic.TotalPrecipitation > 0)
+        {
+            <div class="weather-icon cloud"></div>
+        }
+        else
+        {
+            <div class="weather-icon sun"></div>
+        }
+        <h1>@Model.WeatherHydro.Temp º</h1>
+        <p>@Model.WeatherHydro.River</p>
+    </div>
+
+    <div class="weather-card @pressureClassName">
+        <h1>@Model.WeatherSynoptic.Pressure</h1>
+        <p>Ciśnienie</p>
+    </div>
+
+    <div class="weather-card">
+        <h1>@Model.WeatherSynoptic.WindSpeed m/s</h1>
+        <p>Wiatr</p>
+    </div>
+</div>
