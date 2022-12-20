@@ -2,34 +2,24 @@
 @{
     ViewData["Title"] = "Weather";
     var pressureClassName = "bg-success";
+    var WeatherClassName = "sun";
     @if (Model.WeatherSynoptic.Pressure > 1000)
     {
         pressureClassName = "bg-danger";
     }
+    @if (Model.WeatherSynoptic.TotalPrecipitation > 0)
+    {
+        WeatherClassName = "cloud";
+    }
 }
 <div class="weather-wrapper">
     <div class="weather-card @Model.WeatherSynoptic.StationName">
-        @if (Model.WeatherSynoptic.TotalPrecipitation > 0)
-        {
-            <div class="weather-icon cloud"></div>
-        }
-        else
-        {
-            <div class="weather-icon sun"></div>
-        }
-
+        <div class="weather-icon @WeatherClassName"></div>
         <h1>@Model.WeatherSynoptic.Temp º</h1>
         <p>@Model.WeatherSynoptic.StationName</p>
     </div>
     <div class="weather-card @Model.WeatherHydro.River">
-        @if (Model.WeatherSynoptic.TotalPrecipitation > 0)
-        {
-            <div class="weather-icon cloud"></div>
-        }
-        else
-        {
-            <div class="weather-icon sun"></div>
-        }
+        <div class="weather-icon @WeatherClassName"></div>
         <h1>@Model.WeatherHydro.Temp º</h1>
         <p>@Model.WeatherHydro.River</p>
     </div>

@@ -16,7 +16,9 @@ namespace EzarisHomeApi.Controllers {
             _space = space ?? throw new ArgumentNullException(nameof(space));
         }
         [HttpGet]
-        public string GetAstronomyPictureOfTheDay() => _space.GetAstronomyPictureOfTheDay();            
+        public string GetAstronomyPictureOfTheDay() => _space.GetAstronomyPictureOfTheDay();
+        [HttpGet]
+        public string GetAsteroids() => _space.GetAsteroids();
 
     }
 }

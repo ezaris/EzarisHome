@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 namespace EzarisHomeApi.Interfaces {
     public interface ISpace {
         string GetAstronomyPictureOfTheDay();
+        string GetAsteroids();
     }
 }
